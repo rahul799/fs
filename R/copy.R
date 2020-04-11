@@ -18,7 +18,9 @@
 #' @name copy
 #' @export
 #' @examples
-#' \dontshow{.old_wd <- setwd(tempdir())}
+#' \dontshow{
+#' .old_wd <- setwd(tempdir())
+#' }
 #' file_create("foo")
 #' file_copy("foo", "bar")
 #' try(file_copy("foo", "bar"))
@@ -43,7 +45,9 @@
 #' # Cleanup
 #' dir_delete(c("foo", "foo2"))
 #' link_delete(c("loo", "loo2"))
-#' \dontshow{setwd(.old_wd)}
+#' \dontshow{
+#' setwd(.old_wd)
+#' }
 file_copy <- function(path, new_path, overwrite = FALSE) {
   # TODO: copy attributes, e.g. cp -p?
   assert_no_missing(path)
@@ -83,12 +87,16 @@ dir_copy <- function(path, new_path, overwrite = FALSE) {
     dirs <- dir_ls(path[[i]], type = "directory", recurse = TRUE, all = TRUE)
     dir_create(path(new_path[[i]], path_rel(dirs, path[[i]])))
 
-    files <- dir_ls(path, recurse = TRUE,
-      type = c("unknown", "file", "FIFO", "socket", "character_device", "block_device"), all = TRUE)
+    files <- dir_ls(path,
+      recurse = TRUE,
+      type = c("unknown", "file", "FIFO", "socket", "character_device", "block_device"), all = TRUE
+    )
     file_copy(files, path(new_path[[i]], path_rel(files, path[[i]])), overwrite = overwrite)
 
-    links <- dir_ls(path, recurse = TRUE,
-      type = "symlink", all = TRUE)
+    links <- dir_ls(path,
+      recurse = TRUE,
+      type = "symlink", all = TRUE
+    )
     link_copy(links, path(new_path[[i]], path_rel(links, path[[i]])), overwrite = overwrite)
   }
 

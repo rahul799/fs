@@ -17,7 +17,9 @@
 #' @return The path to the created object (invisibly).
 #' @name create
 #' @examples
-#' \dontshow{.old_wd <- setwd(tempdir())}
+#' \dontshow{
+#' .old_wd <- setwd(tempdir())
+#' }
 #' file_create("foo")
 #' is_file("foo")
 #' # dir_create applied to the same path will fail
@@ -31,7 +33,9 @@
 #' # Cleanup
 #' file_delete("foo")
 #' dir_delete("bar")
-#' \dontshow{setwd(.old_wd)}
+#' \dontshow{
+#' setwd(.old_wd)
+#' }
 #' @export
 file_create <- function(path, ..., mode = "u=rw,go=r") {
   assert_no_missing(path)

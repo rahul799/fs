@@ -119,15 +119,16 @@ colourise_fs_path <- function(x, ..., colors = Sys.getenv("LS_COLORS", gnu_ls_de
   nms <- strsplit(vals, "=")
 
   if (!(
-      length(vals) == length(nms) &&
+    length(vals) == length(nms) &&
       all(lengths(nms) == 2)
-      )) {
+  )) {
     return(x)
   }
 
   map <- setNames(
     vapply(nms, `[[`, character(1), 2),
-    vapply(nms, `[[`, character(1), 1))
+    vapply(nms, `[[`, character(1), 1)
+  )
   file_types <- map[grepl("^[*][.]", names(map))]
   names(file_types) <- sub("^[*][.]", "", names(file_types))
   res <- character(length(x))

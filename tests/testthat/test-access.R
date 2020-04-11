@@ -28,7 +28,7 @@ describe("file_access", {
   })
 })
 
-with_dir_tree(list("foo/bar"  = "test"), {
+with_dir_tree(list("foo/bar" = "test"), {
   link_create(path_abs("foo"), "loo")
 
   describe("file_exists", {
@@ -37,7 +37,8 @@ with_dir_tree(list("foo/bar"  = "test"), {
       expect_equal(file_exists("missing"), c(missing = FALSE))
       expect_equal(
         file_exists(c("foo", "missing", "foo/bar", "loo")),
-        c(foo = TRUE, missing = FALSE, "foo/bar" = TRUE, "loo" = TRUE))
+        c(foo = TRUE, missing = FALSE, "foo/bar" = TRUE, "loo" = TRUE)
+      )
     })
     it("returns FALSE on missing input", {
       expect_identical(file_exists(NA_character_), structure(names = NA, FALSE))
@@ -50,10 +51,11 @@ with_dir_tree(list("foo/bar"  = "test"), {
       expect_equal(dir_exists("missing"), c(missing = FALSE))
       expect_equal(
         dir_exists(c("foo", "missing", "foo/bar")),
-        c(foo = TRUE, missing = FALSE, "foo/bar" = FALSE))
+        c(foo = TRUE, missing = FALSE, "foo/bar" = FALSE)
+      )
     })
     it("returns true for links to directories, like -d in bash", {
-        expect_equal(dir_exists("loo"), c(loo = TRUE))
+      expect_equal(dir_exists("loo"), c(loo = TRUE))
     })
     it("returns FALSE on missing input", {
       expect_identical(dir_exists(NA_character_), structure(names = NA, FALSE))
@@ -66,7 +68,8 @@ with_dir_tree(list("foo/bar"  = "test"), {
       expect_equal(link_exists("missing"), c(missing = FALSE))
       expect_equal(
         link_exists(c("foo", "missing", "foo/bar", "loo")),
-        c(foo = FALSE, missing = FALSE, "foo/bar" = FALSE, "loo" = TRUE))
+        c(foo = FALSE, missing = FALSE, "foo/bar" = FALSE, "loo" = TRUE)
+      )
     })
     it("returns FALSE on missing input", {
       expect_identical(link_exists(NA_character_), structure(names = NA, FALSE))

@@ -113,11 +113,11 @@ as_fs_perms.character <- function(x, ..., mode = 0) {
   }
 
   if (length(x) > 1 && length(mode) > 1 && length(x) != length(mode)) {
-
     msg <- sprintf(paste0(
-        "`x` and `mode` must have compatible lengths:\n",
-        "* `x` has length %i\n",
-        "* `mode` has length %i\n"), length(x), length(mode))
+      "`x` and `mode` must have compatible lengths:\n",
+      "* `x` has length %i\n",
+      "* `mode` has length %i\n"
+    ), length(x), length(mode))
 
 
     stop(fs_error(msg))
@@ -128,15 +128,18 @@ as_fs_perms.character <- function(x, ..., mode = 0) {
   out <- integer(n)
   for (i in seq_len(n)) {
     out[[i]] <- as.integer(
-      .Call(fs_getmode_,
+      .Call(
+        fs_getmode_,
         res[[((i + 1) %% length(res)) + 1L]],
-        as.integer(mode[[((i + 1) %% length(mode)) + 1L]])))
+        as.integer(mode[[((i + 1) %% length(mode)) + 1L]])
+      )
+    )
   }
   new_fs_perms(out)
 }
 
 display_mode_to_symbolic_mode_posix <- function(x) {
-  paste0("u=", substring(x, 1, 3), ",g=", substring(x, 4,6), ",o=", substring(x, 7, 9))
+  paste0("u=", substring(x, 1, 3), ",g=", substring(x, 4, 6), ",o=", substring(x, 7, 9))
 }
 display_mode_to_symbolic_mode_windows <- function(x) {
   paste0("u=", substring(x, 1, 3))

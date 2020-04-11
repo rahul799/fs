@@ -1,6 +1,6 @@
 context("test-is.R")
 
-with_dir_tree(list("foo/bar"  = "test"), {
+with_dir_tree(list("foo/bar" = "test"), {
   link_create(path_abs("foo/bar"), "foo2")
 
   describe("is_file", {

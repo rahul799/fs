@@ -84,7 +84,7 @@ describe("path_real", {
     })
   })
 
-  it ("works with indirect symlinks", {
+  it("works with indirect symlinks", {
     skip_on_os("windows")
 
     with_dir_tree("foo", {
@@ -95,7 +95,7 @@ describe("path_real", {
     })
   })
 
-  it ("works with parent symlinks", {
+  it("works with parent symlinks", {
     skip_on_os("windows")
 
     # If there are symlinks in the parents of relative paths we need to resolve
@@ -112,8 +112,7 @@ describe("path_real", {
     })
   })
 
-  it ("resolves paths before normalizing", {
-
+  it("resolves paths before normalizing", {
     skip_on_os("windows")
 
     # if we have the following hierarchy: a/k/y
@@ -126,8 +125,7 @@ describe("path_real", {
     })
   })
 
-  it ("resolves paths before normalizing", {
-
+  it("resolves paths before normalizing", {
     skip_on_os("windows")
 
     # if we have the following hierarchy: a/k/y
@@ -151,7 +149,6 @@ describe("path_real", {
       expect_equal(path_real(NA_character_), NA_character_)
       expect_equal(path_real(c("foo2", NA_character_)), c(path_real("foo"), NA_character_))
     })
-
   })
 })
 
@@ -215,11 +212,11 @@ describe("path_temp", {
 })
 
 describe("path_ext", {
-  it ("returns 0 length outputs for 0 length inputs", {
+  it("returns 0 length outputs for 0 length inputs", {
     expect_equal(path_ext(character()), character())
   })
 
-  it ("returns the path extension, or \"\" if one does not exist", {
+  it("returns the path extension, or \"\" if one does not exist", {
     expect_equal(path_ext("foo.bar"), "bar")
     expect_equal(path_ext("foo.boo.bar"), "bar")
     expect_equal(path_ext("foo.boo.biff.bar"), "bar")
@@ -237,7 +234,7 @@ describe("path_ext", {
     expect_equal(path_ext(c("foo.bar", NA_character_)), c("bar", NA_character_))
     expect_equal(path_ext("foo.bar/baz"), "")
   })
-  it ("works with non-ASCII inputs", {
+  it("works with non-ASCII inputs", {
     skip_if_not_utf8()
 
     expect_equal(path_ext("f\U00F6\U00F6.txt"), "txt")
@@ -249,7 +246,7 @@ describe("path_ext", {
 })
 
 describe("path_ext_remove", {
-  it ("removes the path extension", {
+  it("removes the path extension", {
     expect_equal(path_ext_remove("foo.bar"), "foo")
     expect_equal(path_ext_remove("foo.boo.bar"), "foo.boo")
     expect_equal(path_ext_remove("foo.boo.biff.bar"), "foo.boo.biff")
@@ -269,7 +266,7 @@ describe("path_ext_remove", {
     expect_equal(path_ext_remove("foo.bar/abc.123"), "foo.bar/abc")
     expect_equal(path_ext_remove("foo.bar/abc"), "foo.bar/abc")
   })
-  it ("works with non-ASCII inputs", {
+  it("works with non-ASCII inputs", {
     skip_if_not_utf8()
 
     expect_equal(path_ext_remove("f\U00F6\U00F6.txt"), "f\U00F6\U00F6")
@@ -278,7 +275,7 @@ describe("path_ext_remove", {
 })
 
 describe("path_ext_set", {
-  it ("replaces the path extension", {
+  it("replaces the path extension", {
     expect_equal(path_ext_set("foo.bar", "baz"), "foo.baz")
     expect_equal(path_ext_set("foo.boo.bar", "baz"), "foo.boo.baz")
     expect_equal(path_ext_set("foo.boo.biff.bar", "baz"), "foo.boo.biff.baz")
@@ -297,22 +294,22 @@ describe("path_ext_set", {
     expect_equal(path_ext_set("foo/.bar", "baz"), "foo/.bar.baz")
     expect_equal(path_ext_set("foo", ""), "foo")
   })
-  it ("works the same with and without a leading . for ext", {
+  it("works the same with and without a leading . for ext", {
     expect_equal(path_ext_set("foo", "bar"), "foo.bar")
     expect_equal(path_ext_set("foo", ".bar"), "foo.bar")
   })
-  it ("works with multiple paths (#205)", {
+  it("works with multiple paths (#205)", {
     multiple_paths <- c("a", "b")
     expect_equal(path_ext_set(multiple_paths, "csv"), c("a.csv", "b.csv"))
   })
-  it ("works with multiple extensions (#250)", {
+  it("works with multiple extensions (#250)", {
     multiple_paths <- c("a", "b")
     multiple_exts <- c("csv", "tsv")
     expect_equal(path_ext_set(multiple_paths, multiple_exts), c("a.csv", "b.tsv"))
 
     expect_error(path_ext_set(multiple_paths, c(multiple_exts, "xls")), class = "fs_error", "consistent lengths")
   })
-  it ("works with non-ASCII inputs", {
+  it("works with non-ASCII inputs", {
     skip_if_not_utf8()
 
     expect_equal(path_ext_set("f\U00F6\U00F6.txt", "bar"), "f\U00F6\U00F6.bar")
@@ -321,7 +318,7 @@ describe("path_ext_set", {
 })
 
 describe("path_ext<-", {
-  it ("replaces the path extension", {
+  it("replaces the path extension", {
     x <- "...manydots"
     path_ext(x) <- "bar"
     expect_equal(x, "...manydots.bar")
@@ -331,7 +328,7 @@ describe("path_ext<-", {
 # test cases derived from https://github.com/python/cpython/blob/6f0eb93183519024cb360162bdd81b9faec97ba6/Lib/test/test_posixpath.py#L276
 
 describe("path_norm", {
-  it ("works with POSIX paths", {
+  it("works with POSIX paths", {
     expect_equal(path_norm(""), ".")
     expect_equal(path_norm(""), ".")
     expect_equal(path_norm(".."), "..")
@@ -347,7 +344,7 @@ describe("path_norm", {
     expect_equal(path_norm("/..//./foo/.//bar"), "/foo/bar")
   })
 
-  it ("works with POSIX paths", {
+  it("works with POSIX paths", {
     expect_equal(path_norm("A//////././//.//B"), "A/B")
     expect_equal(path_norm("A/./B"), "A/B")
     expect_equal(path_norm("A/foo/../B"), "A/B")
@@ -373,7 +370,7 @@ describe("path_norm", {
     expect_equal(path_norm("\\\\?\\D:/XY\\Z"), "//?/D:/XY/Z")
   })
 
-  it ("works with missing values", {
+  it("works with missing values", {
     expect_equal(path_norm(NA), NA_character_)
     expect_equal(path_norm(c("foo", NA)), c("foo", NA))
     expect_equal(path_norm(c(NA, NA)), c(NA_character_, NA_character_))
@@ -383,7 +380,7 @@ describe("path_norm", {
 # Test cases derived from https://github.com/python/cpython/blob/6f0eb93183519024cb360162bdd81b9faec97ba6/Lib/test/test_posixpath.py
 
 describe("path_common", {
-  it ("finds the common path", {
+  it("finds the common path", {
     expect_error(path_common(c("/usr", "usr")), "Can't mix", class = "fs_error")
     expect_error(path_common(c("usr", "/usr")), "Can't mix", class = "fs_error")
 

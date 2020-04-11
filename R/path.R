@@ -9,7 +9,9 @@
 #'   of character vectors of path components.
 #' @seealso [path_expand()] for expansion of user's home directory.
 #' @examples
-#' \dontshow{.old_wd <- setwd(tempdir())}
+#' \dontshow{
+#' .old_wd <- setwd(tempdir())
+#' }
 #' dir_create("a")
 #' file_create("a/b")
 #' link_create(path_abs("a"), "c")
@@ -39,7 +41,9 @@
 #' # Cleanup
 #' dir_delete("a")
 #' link_delete("c")
-#' \dontshow{setwd(.old_wd)}
+#' \dontshow{
+#' setwd(.old_wd)
+#' }
 NULL
 
 #' Construct path to a file or directory
@@ -191,7 +195,7 @@ path_norm <- function(path) {
       size <- 0
       is_abs <- is_absolute_path(p[[1]])
       for (i in seq_along(p)) {
-        if (p[[i]] != ".." || (! is_abs && size == 0) || (size > 0 && res[[size]] == "..")) {
+        if (p[[i]] != ".." || (!is_abs && size == 0) || (size > 0 && res[[size]] == "..")) {
           res[[size <- size + 1]] <- p[[i]]
         } else if (size > 0) {
           size <- size - 1
@@ -401,7 +405,6 @@ path_ext_remove <- function(path) {
 #' @rdname path_file
 #' @export
 path_ext_set <- function(path, ext) {
-
   if (!(length(ext) == length(path) || length(ext) == 1)) {
     assert_recyclable(list(path, ext))
   }
@@ -432,7 +435,6 @@ path_ext_set <- function(path, ext) {
 #' @describeIn path_math finds the common parts of two (or more) paths.
 #' @export
 path_common <- function(path) {
-
   is_missing <- is.na(path)
 
   if (any(is_missing)) {
@@ -461,7 +463,7 @@ path_common <- function(path) {
       } else {
         common <- s1[seq(1, i - 1)]
       }
-      break;
+      break
     }
   }
   path_join(common)

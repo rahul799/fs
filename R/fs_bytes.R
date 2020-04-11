@@ -1,4 +1,4 @@
-units <- c('B' = 1, 'K' = 1024, 'M' = 1024 ^ 2, 'G' = 1024 ^ 3, 'T' = 1024 ^ 4, 'P' = 1024 ^ 5, 'E' = 1024 ^ 6, 'Z' = 1024 ^ 7, 'Y' = 1024 ^ 8)
+units <- c("B" = 1, "K" = 1024, "M" = 1024^2, "G" = 1024^3, "T" = 1024^4, "P" = 1024^5, "E" = 1024^6, "Z" = 1024^7, "Y" = 1024^8)
 
 #' Human readable file sizes
 #'
@@ -58,8 +58,8 @@ format.fs_bytes <- function(x, scientific = FALSE, digits = 3, drop0trailing = T
   bytes <- unclass(x)
 
   exponent <- pmin(floor(log(bytes, 1024)), length(units) - 1)
-  res <- round(bytes / 1024 ^ exponent, 2)
-  unit <- ifelse (exponent == 0, "", names(units)[exponent + 1])
+  res <- round(bytes / 1024^exponent, 2)
+  unit <- ifelse(exponent == 0, "", names(units)[exponent + 1])
 
   ## Zero bytes
   res[bytes == 0] <- 0
@@ -68,7 +68,7 @@ format.fs_bytes <- function(x, scientific = FALSE, digits = 3, drop0trailing = T
   ## NA and NaN bytes
   res[is.na(bytes)] <- NA_real_
   res[is.nan(bytes)] <- NaN
-  unit[is.na(bytes)] <- ""            # Includes NaN as well
+  unit[is.na(bytes)] <- "" # Includes NaN as well
 
   res <- format(res, scientific = scientific, digits = digits, drop0trailing = drop0trailing, ...)
 
@@ -110,10 +110,11 @@ max.fs_bytes <- function(x, ...) {
 
 #' @export
 # Adapted from Ops.numeric_version
-Ops.fs_bytes <- function (e1, e2) {
+Ops.fs_bytes <- function(e1, e2) {
   if (nargs() == 1L) {
     stop(sprintf("unary '%s' not defined for \"fs_bytes\" objects", .Generic),
-      call. = FALSE)
+      call. = FALSE
+    )
   }
 
   boolean <- switch(.Generic,
@@ -128,10 +129,12 @@ Ops.fs_bytes <- function (e1, e2) {
     `!=` = TRUE,
     `<=` = TRUE,
     `>=` = TRUE,
-  FALSE)
+    FALSE
+  )
   if (!boolean) {
     stop(sprintf("'%s' not defined for \"fs_bytes\" objects", .Generic),
-      call. = FALSE)
+      call. = FALSE
+    )
   }
   e1 <- as_fs_bytes(e1)
   e2 <- as_fs_bytes(e2)
