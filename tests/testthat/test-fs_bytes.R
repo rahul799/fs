@@ -42,7 +42,8 @@ describe("format.fs_bytes", {
     v <- c(NA, 1, 2^13, 2^20, NaN, 2^15)
     expect_equal(
       format(fs_bytes(v), trim = TRUE),
-      c("NA", "1", "8K", "1M", "NaN", "32K"))
+      c("NA", "1", "8K", "1M", "NaN", "32K")
+    )
 
     expect_equal(format(fs_bytes(numeric())), character())
   })
@@ -114,7 +115,7 @@ describe("Ops.fs_bytes", {
     expect_equal(x - 100, fs_bytes(c(0, 100, 200)))
     expect_equal(x * 100, fs_bytes(c(10000, 20000, 30000)))
     expect_equal(x / 2, fs_bytes(c(50, 100, 150)))
-    expect_equal(x ^ 2, fs_bytes(c(10000, 40000, 90000)))
+    expect_equal(x^2, fs_bytes(c(10000, 40000, 90000)))
   })
 
   it("errors for other binary operators", {

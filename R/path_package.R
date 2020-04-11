@@ -4,8 +4,8 @@
 #' error if the package does not exist. It also returns a different error if
 #' the file within the package does not exist.
 #'
-#'`path_package()` also automatically works with packages loaded with devtools
-#'even if the `path_package()` call comes from a different package.
+#' `path_package()` also automatically works with packages loaded with devtools
+#' even if the `path_package()` call comes from a different package.
 #'
 #' @param package Name of the package to in which to search
 #' @param ... Additional paths appended to the package path by [path()].
@@ -23,23 +23,26 @@ path_package <- function(package, ...) {
   pkg_path <-
     tryCatch(
       find.package(package, quiet = FALSE),
-
       error = function(error) {
         is_not_found_error <- grepl(
           gettextf("there is no package called %s", sQuote(package)),
-          conditionMessage(error), fixed = TRUE)
+          conditionMessage(error),
+          fixed = TRUE
+        )
         if (!is_not_found_error) {
           stop(error)
         }
 
         msg <- sprintf(
-"Can't find package `%s` in library locations:
+          "Can't find package `%s` in library locations:
 %s",
-    package,
-    paste0("  - '", path_tidy(.libPaths()), "'", collapse = "\n"))
+          package,
+          paste0("  - '", path_tidy(.libPaths()), "'", collapse = "\n")
+        )
 
-    stop(fs_error(msg, class = "EEXIST"))
-    })
+        stop(fs_error(msg, class = "EEXIST"))
+      }
+    )
 
 
   files_inst <- path(pkg_path, "inst", ...)

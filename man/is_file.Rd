@@ -29,7 +29,9 @@ object does not exist, \code{NA} is returned.
 Functions to test for file types
 }
 \examples{
-\dontshow{.old_wd <- setwd(tempdir())}
+\dontshow{
+.old_wd <- setwd(tempdir())
+}
 dir_create("d")
 
 file_create("d/file.txt")
@@ -43,7 +45,9 @@ is_link(paths)
 
 # Cleanup
 dir_delete("d")
-\dontshow{setwd(.old_wd)}
+\dontshow{
+setwd(.old_wd)
+}
 }
 \seealso{
 \code{\link[=file_exists]{file_exists()}}, \code{\link[=dir_exists]{dir_exists()}} and \code{\link[=link_exists]{link_exists()}} if you want

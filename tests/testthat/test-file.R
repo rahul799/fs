@@ -2,8 +2,9 @@ context("test-file.R")
 
 describe("file_info", {
   with_dir_tree(list(
-      "foo/bar" = "test",
-      "NA" = ""), {
+    "foo/bar" = "test",
+    "NA" = ""
+  ), {
     link_create(path_abs("foo"), "foo2")
 
     it("returns a correct tibble", {
@@ -36,16 +37,17 @@ describe("file_info", {
 
 describe("file_size", {
   with_dir_tree(list(
-      "foo" = "test",
-      "bar" = "test2"), {
-      it("returns the correct file size", {
-        expect_equal(file_size("foo"), stats::setNames(file_info("foo")$size, "foo"))
-        expect_equal(file_size("bar"), stats::setNames(file_info("bar")$size, "bar"))
-      })
-      it("returns an object of class fs_bytes, numeric (#239)", {
-        expect_s3_class(file_size("foo"), c("fs_bytes", "numeric"), exact = TRUE)
-        expect_s3_class(file_size("foo")[], c("fs_bytes", "numeric"), exact = TRUE)
-      })
+    "foo" = "test",
+    "bar" = "test2"
+  ), {
+    it("returns the correct file size", {
+      expect_equal(file_size("foo"), stats::setNames(file_info("foo")$size, "foo"))
+      expect_equal(file_size("bar"), stats::setNames(file_info("bar")$size, "bar"))
+    })
+    it("returns an object of class fs_bytes, numeric (#239)", {
+      expect_s3_class(file_size("foo"), c("fs_bytes", "numeric"), exact = TRUE)
+      expect_s3_class(file_size("foo")[], c("fs_bytes", "numeric"), exact = TRUE)
+    })
   })
 })
 

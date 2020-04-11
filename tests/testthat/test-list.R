@@ -26,9 +26,10 @@ describe("dir_ls", {
 
   it("Uses grep to filter output", {
     with_dir_tree(list(
-        "foo/bar/baz" = "test",
-        "foo/bar/test2" = "",
-        "foo/bar/test3" = ""), {
+      "foo/bar/baz" = "test",
+      "foo/bar/test2" = "",
+      "foo/bar/test3" = ""
+    ), {
       expect_equal(dir_ls(recurse = TRUE, glob = "*baz"), "foo/bar/baz")
       expect_equal(dir_ls(recurse = TRUE, regexp = "baz"), "foo/bar/baz")
       expect_equal(dir_ls(recurse = TRUE, regexp = "[23]"), c("foo/bar/test2", "foo/bar/test3"))
@@ -38,8 +39,9 @@ describe("dir_ls", {
 
   it("Does not print hidden files by default", {
     with_dir_tree(list(
-        ".foo" = "foo",
-        "bar" = "bar"), {
+      ".foo" = "foo",
+      "bar" = "bar"
+    ), {
       expect_equal(dir_ls(), "bar")
       expect_equal(dir_ls(all = TRUE), c(".foo", "bar"))
     })
@@ -47,8 +49,9 @@ describe("dir_ls", {
 
   it("can find multiple types", {
     with_dir_tree(list(
-        "file" = "foo",
-        "dir"), {
+      "file" = "foo",
+      "dir"
+    ), {
       link_create(path_abs("dir"), "link")
       expect_equal(dir_ls(type = "file"), "file")
       expect_equal(dir_ls(type = "directory"), "dir")
@@ -76,9 +79,9 @@ describe("dir_ls", {
   it("warns if fail == FALSE", {
     skip_on_os("windows")
     with_dir_tree(list(
-        "foo",
-        "foo2/bar/baz"), {
-
+      "foo",
+      "foo2/bar/baz"
+    ), {
       file_chmod("foo", "a-r")
       expect_error(dir_ls(".", recurse = TRUE), class = "EACCES")
       expect_warning(dir_ls(fail = FALSE, recurse = TRUE), class = "EACCES")
@@ -94,8 +97,9 @@ describe("dir_ls", {
 describe("dir_map", {
   it("can find multiple types", {
     with_dir_tree(list(
-        "file" = "foo",
-        "dir"), {
+      "file" = "foo",
+      "dir"
+    ), {
       nc <- function(x) nchar(x, keepNA = FALSE)
       expect_equal(dir_map(type = "file", fun = nc), list(4))
       expect_equal(dir_map(type = "directory", fun = nc), list(3))
@@ -109,9 +113,9 @@ describe("dir_map", {
   it("warns if fail == FALSE", {
     skip_on_os("windows")
     with_dir_tree(list(
-        "foo",
-        "foo2/bar/baz"), {
-
+      "foo",
+      "foo2/bar/baz"
+    ), {
       file_chmod("foo", "a-r")
       expect_error(dir_map(".", fun = identity, recurse = TRUE), class = "EACCES")
       expect_warning(dir_map(fail = FALSE, fun = identity, recurse = TRUE), class = "EACCES")
@@ -130,8 +134,9 @@ describe("dir_walk", {
     f <- function(p) x <<- p
 
     with_dir_tree(list(
-        "file" = "foo",
-        "dir"), {
+      "file" = "foo",
+      "dir"
+    ), {
       link_create(path_abs("dir"), "link")
 
       dir_walk(type = "file", fun = f)
@@ -159,9 +164,9 @@ describe("dir_walk", {
   it("warns if fail == FALSE", {
     skip_on_os("windows")
     with_dir_tree(list(
-        "foo",
-        "foo2/bar/baz"), {
-
+      "foo",
+      "foo2/bar/baz"
+    ), {
       file_chmod("foo", "a-r")
       expect_error(dir_walk(".", fun = identity, recurse = TRUE), class = "EACCES")
       expect_warning(dir_walk(fail = FALSE, fun = identity, recurse = TRUE), class = "EACCES")
@@ -177,8 +182,9 @@ describe("dir_walk", {
 describe("dir_info", {
   it("is identical to file_info(dir_ls())", {
     with_dir_tree(list(
-        "file" = "foo",
-        "dir"), {
+      "file" = "foo",
+      "dir"
+    ), {
       link_create(path_abs("dir"), "link")
       expect_identical(dir_info(), file_info(dir_ls()))
     })
@@ -190,9 +196,9 @@ describe("dir_info", {
   it("warns if fail == FALSE", {
     skip_on_os("windows")
     with_dir_tree(list(
-        "foo",
-        "foo2/bar/baz"), {
-
+      "foo",
+      "foo2/bar/baz"
+    ), {
       file_chmod("foo", "a-r")
       expect_error(dir_info(".", fun = identity, recurse = TRUE), class = "EACCES")
       expect_warning(dir_info(fail = FALSE, fun = identity, recurse = TRUE), class = "EACCES")

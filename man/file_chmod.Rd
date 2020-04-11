@@ -21,7 +21,9 @@ to change this will have no effect. Windows also does not have user
 groups, so only the user permissions (\code{u}) are relevant.
 }
 \examples{
-\dontshow{.old_wd <- setwd(tempdir())}
+\dontshow{
+.old_wd <- setwd(tempdir())
+}
 file_create("foo", mode = "000")
 file_chmod("foo", "777")
 file_info("foo")$permissions
@@ -42,5 +44,7 @@ file_info(files)$permissions
 
 file_chmod(files, c("644", "600"))
 file_info(files)$permissions
-\dontshow{setwd(.old_wd)}
+\dontshow{
+setwd(.old_wd)
+}
 }

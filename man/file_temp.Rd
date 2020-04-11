@@ -41,7 +41,9 @@ internal stack, however generally this is done instead by calling
 \code{path_temp()} constructs a path within the session temporary directory.
 }
 \examples{
-\dontshow{file_temp_push("/tmp/filedd461c46df20")}
+\dontshow{
+file_temp_push("/tmp/filedd461c46df20")
+}
 
 path_temp()
 path_temp("does-not-exist")

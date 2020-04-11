@@ -25,7 +25,9 @@
 #' @template fs
 #' @export
 #' @examples
-#' \dontshow{.old_wd <- setwd(tempdir())}
+#' \dontshow{
+#' .old_wd <- setwd(tempdir())
+#' }
 #' dir_ls(R.home("share"), type = "directory")
 #'
 #' # Create a shorter link
@@ -41,7 +43,9 @@
 #'
 #' # Cleanup
 #' link_delete("base")
-#' \dontshow{setwd(.old_wd)}
+#' \dontshow{
+#' setwd(.old_wd)
+#' }
 dir_ls <- function(path = ".", all = FALSE, recurse = FALSE, type = "any",
                    glob = NULL, regexp = NULL, invert = FALSE, fail = TRUE,
                    ..., recursive) {
@@ -68,13 +72,14 @@ directory_entry_types <- c(
   "FIFO" = 16L,
   "socket" = 32L,
   "character_device" = 64L,
-  "block_device" = 128L)
+  "block_device" = 128L
+)
 
 #' @rdname dir_ls
 #' @param fun A function, taking one parameter, the current path entry.
 #' @export
 dir_map <- function(path = ".", fun, all = FALSE, recurse = FALSE, type =
-  "any", fail = TRUE) {
+                      "any", fail = TRUE) {
   assert_no_missing(path)
 
   if (is.logical(recurse)) {
@@ -109,6 +114,8 @@ dir_info <- function(path = ".", all = FALSE, recurse = FALSE,
                      type = "any", regexp = NULL, glob = NULL, fail = TRUE, ...) {
   assert_no_missing(path)
 
-  file_info(dir_ls(path = path, all = all, recurse = recurse, type = type,
-    regexp = regexp, glob = glob, fail = fail, ...), fail = fail)
+  file_info(dir_ls(
+    path = path, all = all, recurse = recurse, type = type,
+    regexp = regexp, glob = glob, fail = fail, ...
+  ), fail = fail)
 }

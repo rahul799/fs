@@ -30,7 +30,9 @@
 #' @seealso [dir_info()] to display file information for files in a given
 #'   directory.
 #' @examples
-#' \dontshow{.old_wd <- setwd(tempdir())}
+#' \dontshow{
+#' .old_wd <- setwd(tempdir())
+#' }
 #' write.csv(mtcars, "mtcars.csv")
 #' file_info("mtcars.csv")
 #'
@@ -40,7 +42,9 @@
 #'
 #' # Cleanup
 #' file_delete("mtcars.csv")
-#' \dontshow{setwd(.old_wd)}
+#' \dontshow{
+#' setwd(.old_wd)
+#' }
 #' @export
 file_info <- function(path, fail = TRUE, follow = FALSE) {
   old <- path_expand(path)
@@ -61,7 +65,7 @@ file_info <- function(path, fail = TRUE, follow = FALSE) {
   res <- res[c(important, setdiff(names(res), important))]
 
   is_symlink <- !is.na(res$type) & res$type == "symlink"
-  while(follow && any(is_symlink)) {
+  while (follow && any(is_symlink)) {
     res[is_symlink, ] <- file_info(link_path(path[is_symlink]), fail = fail, follow = FALSE)
     is_symlink <- !is.na(res$type) & res$type == "symlink"
   }
@@ -85,7 +89,8 @@ file_types <- c(
   "FIFO" = 3L,
   "symlink" = 4L,
   "file" = 5L,
-  "socket" = 6L)
+  "socket" = 6L
+)
 
 #' Change file permissions
 #' @template fs
@@ -96,7 +101,9 @@ file_types <- c(
 #'   groups, so only the user permissions (`u`) are relevant.
 #' @export
 #' @examples
-#' \dontshow{.old_wd <- setwd(tempdir())}
+#' \dontshow{
+#' .old_wd <- setwd(tempdir())
+#' }
 #' file_create("foo", mode = "000")
 #' file_chmod("foo", "777")
 #' file_info("foo")$permissions
@@ -117,7 +124,9 @@ file_types <- c(
 #'
 #' file_chmod(files, c("644", "600"))
 #' file_info(files)$permissions
-#' \dontshow{setwd(.old_wd)}
+#' \dontshow{
+#' setwd(.old_wd)
+#' }
 file_chmod <- function(path, mode) {
   assert_no_missing(path)
   mode <- as_fs_perms(mode, mode = file_info(path)$permissions)
@@ -194,12 +203,16 @@ file_show <- function(path = ".", browser = getOption("browser")) {
 #'   Should either be the same length as `path`, or a single directory.
 #' @return The new path (invisibly).
 #' @examples
-#' \dontshow{.old_wd <- setwd(tempdir())}
+#' \dontshow{
+#' .old_wd <- setwd(tempdir())
+#' }
 #' file_create("foo")
 #' file_move("foo", "bar")
 #' file_exists(c("foo", "bar"))
 #' file_delete("bar")
-#' \dontshow{setwd(.old_wd)}
+#' \dontshow{
+#' setwd(.old_wd)
+#' }
 #' @export
 file_move <- function(path, new_path) {
   assert_no_missing(path)
@@ -232,11 +245,15 @@ file_move <- function(path, new_path) {
 #' @param access_time,modification_time The times to set, inputs will be
 #'   coerced to [POSIXct] objects.
 #' @examples
-#' \dontshow{.old_wd <- setwd(tempdir())}
+#' \dontshow{
+#' .old_wd <- setwd(tempdir())
+#' }
 #' file_create("foo")
 #' file_touch("foo", "2018-01-01")
 #' file_info("foo")[c("access_time", "modification_time", "change_time", "birth_time")]
-#' \dontshow{setwd(.old_wd)}
+#' \dontshow{
+#' setwd(.old_wd)
+#' }
 #' @export
 file_touch <- function(path, access_time = Sys.time(), modification_time = access_time) {
   assert_no_missing(path)

@@ -43,7 +43,9 @@ compared to \code{\link[=dir.create]{dir.create()}}, \code{dir_create()} will si
 directories.
 }
 \examples{
-\dontshow{.old_wd <- setwd(tempdir())}
+\dontshow{
+.old_wd <- setwd(tempdir())
+}
 file_create("foo")
 is_file("foo")
 # dir_create applied to the same path will fail
@@ -57,5 +59,7 @@ try(file_create("bar"))
 # Cleanup
 file_delete("foo")
 dir_delete("bar")
-\dontshow{setwd(.old_wd)}
+\dontshow{
+setwd(.old_wd)
+}
 }

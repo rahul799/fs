@@ -4,14 +4,18 @@
 #' @template fs
 #' @export
 #' @examples
-#' \dontshow{.old_wd <- setwd(tempdir())}
+#' \dontshow{
+#' .old_wd <- setwd(tempdir())
+#' }
 #' file_create("foo")
 #' link_create(path_abs("foo"), "bar")
 #' link_path("bar")
 #'
 #' # Cleanup
 #' file_delete(c("foo", "bar"))
-#' \dontshow{setwd(.old_wd)}
+#' \dontshow{
+#' setwd(.old_wd)
+#' }
 link_path <- function(path) {
   assert_no_missing(path)
 

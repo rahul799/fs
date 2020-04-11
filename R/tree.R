@@ -43,15 +43,15 @@ pc <- function(...) {
 box_chars <- function() {
   if (is_utf8_output()) {
     list(
-      "h" = "\u2500",                   # horizontal
-      "v" = "\u2502",                   # vertical
+      "h" = "\u2500", # horizontal
+      "v" = "\u2502", # vertical
       "l" = "\u2514",
       "j" = "\u251C"
     )
   } else {
     list(
-      "h" = "-",                        # horizontal
-      "v" = "|",                        # vertical
+      "h" = "-", # horizontal
+      "v" = "|", # vertical
       "l" = "\\",
       "j" = "+"
     )
@@ -59,13 +59,15 @@ box_chars <- function() {
 }
 
 is_latex_output <- function() {
-  if (!("knitr" %in% loadedNamespaces())) return(FALSE)
+  if (!("knitr" %in% loadedNamespaces())) {
+    return(FALSE)
+  }
   get("is_latex_output", asNamespace("knitr"))()
 }
 
 is_utf8_output <- function() {
   opt <- getOption("cli.unicode", NULL)
-  if (! is.null(opt)) {
+  if (!is.null(opt)) {
     isTRUE(opt)
   } else {
     l10n_info()$`UTF-8` && !is_latex_output()

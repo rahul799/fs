@@ -1,8 +1,10 @@
 captures <- function(x, m) {
   assert("`x` must be a character", is.character(x))
-  assert("`m` must be a match object from `regexpr()`",
+  assert(
+    "`m` must be a match object from `regexpr()`",
     inherits(m, "integer") &&
-    all(c("match.length", "capture.start", "capture.length", "capture.names") %in% names(attributes(m))))
+      all(c("match.length", "capture.start", "capture.length", "capture.names") %in% names(attributes(m)))
+  )
 
   starts <- attr(m, "capture.start")
   strings <- substring(x, starts, starts + attr(m, "capture.length") - 1L)
@@ -100,11 +102,12 @@ assert_no_missing <- function(x) {
     remaining_width <- getOption("width") - nchar(number, keepNA = FALSE) - 29
     indexes <- collapse(idx, width = remaining_width, sep = ", ", last = " and ")
     msg <- sprintf(
-"`%s` must not have missing values
+      "`%s` must not have missing values
   * NAs found at %s locations: %s",
-    nme,
-    number,
-    indexes)
+      nme,
+      number,
+      indexes
+    )
 
     stop(fs_error(msg))
   }

@@ -31,7 +31,9 @@ the directory. Compared to \link{unlink} it will always throw an error if the
 directory cannot be deleted rather than being silent or signalling a warning.
 }
 \examples{
-\dontshow{.old_wd <- setwd(tempdir())}
+\dontshow{
+.old_wd <- setwd(tempdir())
+}
 # create a directory, with some files and a link to it
 dir_create("dir")
 files <- file_create(path("dir", letters[1:5]))
@@ -59,5 +61,7 @@ dir_exists(link_path("link"))
 # Delete the link
 link_delete("link")
 link_exists("link")
-\dontshow{setwd(.old_wd)}
+\dontshow{
+setwd(.old_wd)
+}
 }

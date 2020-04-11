@@ -2,7 +2,7 @@ context("test-temp.R")
 
 test_that("file_temp() returns unique temporary files", {
   prev <- file_temp()
-  for(i in seq_len(10)) {
+  for (i in seq_len(10)) {
     expect_true(file_temp() != prev)
   }
 })
@@ -13,7 +13,7 @@ test_that("file_temp() extension applied correctly", {
   expect_equal(path_ext(tmp_no_ext), "")
   expect_equal(path_ext(tmp_has_ext), "pdf")
 
-  exts = c("xlsx", "doc", "")
+  exts <- c("xlsx", "doc", "")
   tmpfile_multiple <- tempfile(fileext = paste0(c(".", ".", ""), exts))
   file_temp_multiple <- file_temp(ext = exts)
   expect_equal(path_ext(file_temp_multiple), path_ext(tmpfile_multiple))

@@ -9,7 +9,9 @@
 #' @inheritParams file_info
 #' @export
 #' @examples
-#' \dontshow{.old_wd <- setwd(tempdir())}
+#' \dontshow{
+#' .old_wd <- setwd(tempdir())
+#' }
 #' dir_create("d")
 #'
 #' file_create("d/file.txt")
@@ -23,7 +25,9 @@
 #'
 #' # Cleanup
 #' dir_delete("d")
-#' \dontshow{setwd(.old_wd)}
+#' \dontshow{
+#' setwd(.old_wd)
+#' }
 is_file <- function(path, follow = TRUE) {
   res <- file_info(path, follow = follow)
   setNames(!is.na(res$type) & res$type == "file", path)

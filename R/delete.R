@@ -15,7 +15,9 @@
 #' @return The deleted paths (invisibly).
 #' @name delete
 #' @examples
-#' \dontshow{.old_wd <- setwd(tempdir())}
+#' \dontshow{
+#' .old_wd <- setwd(tempdir())
+#' }
 #' # create a directory, with some files and a link to it
 #' dir_create("dir")
 #' files <- file_create(path("dir", letters[1:5]))
@@ -43,7 +45,9 @@
 #' # Delete the link
 #' link_delete("link")
 #' link_exists("link")
-#' \dontshow{setwd(.old_wd)}
+#' \dontshow{
+#' setwd(.old_wd)
+#' }
 file_delete <- function(path) {
   assert_no_missing(path)
 
@@ -68,7 +72,8 @@ dir_delete <- function(path) {
   files <- dir_ls(old,
     type = c("unknown", "file", "symlink", "FIFO", "socket", "character_device", "block_device"),
     recurse = TRUE,
-    all = TRUE)
+    all = TRUE
+  )
   .Call(fs_unlink_, files)
   .Call(fs_rmdir_, rev(c(old, dirs)))
 
@@ -80,7 +85,8 @@ dir_delete <- function(path) {
 link_delete <- function(path) {
   assert_no_missing(path)
 
-  assert("`path` must be a link",
+  assert(
+    "`path` must be a link",
     all(is_link(path))
   )
 
