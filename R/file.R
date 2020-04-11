@@ -157,7 +157,7 @@ file_chown <- function(path, user_id = NULL, group_id = NULL) {
     group_id <- .Call(fs_getgrnam_, group_id)
   }
 
-  .Call(fs_chown_, old, as.integer(user_id), as.integer(group_id))
+  .Call(fs_chown_, old, as.integer(user_id),as.integer(group_id))
 
   invisible(path_tidy(path))
 }
@@ -249,5 +249,5 @@ file_touch <- function(path, access_time = Sys.time(), modification_time = acces
   .Call(fs_create_, path, 420L)
   .Call(fs_touch_, path, access_time, modification_time)
 
-  invisible(path_tidy(path))
+  invisible(path_tidy(path)   )
 }
