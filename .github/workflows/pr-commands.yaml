@@ -36,6 +36,8 @@ jobs:
       - uses: r-lib/actions/setup-r@master
       - name: Install dependencies
         run: Rscript -e 'install.packages("styler")'
+      - name: File Changes Action
+        uses: trilom/file-changes-action@v1.2.3
       - name: Style
         run: Rscript -e 'styler::style_pkg()'
       - name: commit
