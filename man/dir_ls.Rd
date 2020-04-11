@@ -89,7 +89,9 @@ the result in a list.
 \code{dir_walk()} calls \code{fun} for its side-effect and returns the input \code{path}.
 }
 \examples{
-\dontshow{.old_wd <- setwd(tempdir())}
+\dontshow{
+.old_wd <- setwd(tempdir())
+}
 dir_ls(R.home("share"), type = "directory")
 
 # Create a shorter link
@@ -105,5 +107,7 @@ dir_info("base")
 
 # Cleanup
 link_delete("base")
-\dontshow{setwd(.old_wd)}
+\dontshow{
+setwd(.old_wd)
+}
 }

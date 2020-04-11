@@ -37,7 +37,9 @@ The behavior of \code{dir_copy()} differs slightly than that of \code{file.copy(
 if the name differs from the basename of \code{path}.
 }
 \examples{
-\dontshow{.old_wd <- setwd(tempdir())}
+\dontshow{
+.old_wd <- setwd(tempdir())
+}
 file_create("foo")
 file_copy("foo", "bar")
 try(file_copy("foo", "bar"))
@@ -62,5 +64,7 @@ link_path("loo2")
 # Cleanup
 dir_delete(c("foo", "foo2"))
 link_delete(c("loo", "loo2"))
-\dontshow{setwd(.old_wd)}
+\dontshow{
+setwd(.old_wd)
+}
 }

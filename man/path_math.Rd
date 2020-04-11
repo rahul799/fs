@@ -74,7 +74,9 @@ which can be either an absolute or relative path.
 }}
 
 \examples{
-\dontshow{.old_wd <- setwd(tempdir())}
+\dontshow{
+.old_wd <- setwd(tempdir())
+}
 dir_create("a")
 file_create("a/b")
 link_create(path_abs("a"), "c")
@@ -104,7 +106,9 @@ path_common(c("/foo/bar/baz", "/foo/bar/abc", "/foo/xyz/123"))
 # Cleanup
 dir_delete("a")
 link_delete("c")
-\dontshow{setwd(.old_wd)}
+\dontshow{
+setwd(.old_wd)
+}
 }
 \seealso{
 \code{\link[=path_expand]{path_expand()}} for expansion of user's home directory.
