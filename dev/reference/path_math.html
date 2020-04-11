@@ -212,13 +212,15 @@ which can be either an absolute or relative path.</p></li>
     <div class='dont-index'><p><code><a href='path_expand.html'>path_expand()</a></code> for expansion of user's home directory.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>.old_wd</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
+    <pre class="examples"><div class='input'><span class='co'># \dontshow{</span>
+<span class='no'>.old_wd</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
+<span class='co'># }</span>
 <span class='fu'><a href='create.html'>dir_create</a></span>(<span class='st'>"a"</span>)
 <span class='fu'><a href='create.html'>file_create</a></span>(<span class='st'>"a/b"</span>)
 <span class='fu'><a href='create.html'>link_create</a></span>(<span class='fu'>path_abs</span>(<span class='st'>"a"</span>), <span class='st'>"c"</span>)
 
 <span class='co'># Realize the path</span>
-<span class='fu'>path_real</span>(<span class='st'>"c/b"</span>)</div><div class='output co'>#&gt; /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpkkEPpE/a/b</div><div class='input'>
+<span class='fu'>path_real</span>(<span class='st'>"c/b"</span>)</div><div class='output co'>#&gt; /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpCg8SMt/a/b</div><div class='input'>
 <span class='co'># Split a path</span>
 <span class='no'>parts</span> <span class='kw'>&lt;-</span> <span class='fu'>path_split</span>(<span class='st'>"a/b"</span>)
 <span class='no'>parts</span></div><div class='output co'>#&gt; [[1]]
@@ -237,7 +239,9 @@ which can be either an absolute or relative path.</p></li>
 <span class='co'># Cleanup</span>
 <span class='fu'><a href='delete.html'>dir_delete</a></span>(<span class='st'>"a"</span>)
 <span class='fu'><a href='delete.html'>link_delete</a></span>(<span class='st'>"c"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='no'>.old_wd</span>)</div></span></pre>
+<span class='co'># \dontshow{</span>
+<span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='no'>.old_wd</span>)
+<span class='co'># }</span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -253,7 +257,7 @@ which can be either an absolute or relative path.</p></li>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
 </div>
 
       </footer>

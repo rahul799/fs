@@ -162,11 +162,15 @@ coerced to <a href='https://rdrr.io/r/base/DateTimeClasses.html'>POSIXct</a> obj
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>.old_wd</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
+    <pre class="examples"><div class='input'><span class='co'># \dontshow{</span>
+<span class='no'>.old_wd</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
+<span class='co'># }</span>
 <span class='fu'><a href='create.html'>file_create</a></span>(<span class='st'>"foo"</span>)
 <span class='fu'>file_touch</span>(<span class='st'>"foo"</span>, <span class='st'>"2018-01-01"</span>)
 <span class='fu'><a href='file_info.html'>file_info</a></span>(<span class='st'>"foo"</span>)[<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"access_time"</span>, <span class='st'>"modification_time"</span>, <span class='st'>"change_time"</span>, <span class='st'>"birth_time"</span>)]</div><div class='output co'>#&gt;   access_time modification_time         change_time birth_time
-#&gt; 1  2018-01-01        2018-01-01 2020-04-07 14:34:31 2018-01-01</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='no'>.old_wd</span>)</div></pre>
+#&gt; 1  2018-01-01        2018-01-01 2020-04-11 10:12:45 2018-01-01</div><div class='input'><span class='co'># \dontshow{</span>
+<span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='no'>.old_wd</span>)
+<span class='co'># }</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -182,7 +186,7 @@ coerced to <a href='https://rdrr.io/r/base/DateTimeClasses.html'>POSIXct</a> obj
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
 </div>
 
       </footer>
