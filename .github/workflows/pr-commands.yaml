@@ -34,22 +34,10 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - uses: r-lib/actions/setup-r@master
-      - name: file changed
-      - uses: trilom/file-changes-action@v1.2.3
-      - name: test
-        run: |
-          cat $HOME/files.json
-          cat $HOME/files_modified.json
-          cat $HOME/files_added.json
-          cat $HOME/files_removed.json
-          echo '${{ steps.file_changes.outputs.files}}'
-          echo '${{ steps.file_changes.outputs.files_modified}}'
-          echo '${{ steps.file_changes.outputs.files_added}}'
-          echo '${{ steps.file_changes.outputs.files_removed}}'
       - name: Install dependencies
         run: Rscript -e 'install.packages("styler")'
       - name: Style
-        run: Rscript -e 'styler::style_file(${{ steps.file_changes.outputs.files_modified}})'
+        run: Rscript -e 'styler::style_pkg()'
       - name: commit
         run: |
           git add \*.R
