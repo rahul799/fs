@@ -3,7 +3,7 @@ name: Commands
 jobs:
   style:
     name: style
-    runs-on: macOS-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: r-lib/actions/pr-fetch@master
