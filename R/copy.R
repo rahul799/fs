@@ -118,5 +118,5 @@ link_copy <- function(path, new_path, overwrite = FALSE) {
     link_delete(new[to_delete])
   }
 
-  invisible(link_create(link_path(old), new))
+  invisible(link_create(link_path(old), new)                    )
 }
