@@ -102,5 +102,5 @@ link_create <- function(path, new_path, symbolic = TRUE) {
     .Call(fs_link_create_hard_, old, new)
   }
 
-  invisible(path_tidy(new_path)                           )
+  invisible(path_tidy(new_path))
 }
