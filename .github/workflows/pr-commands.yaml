@@ -39,7 +39,9 @@ jobs:
       - name: File Changes Action
         uses: trilom/file-changes-action@v1.2.3
       - name: Style
-        run: Rscript -e 'styler::style_file(${{ steps.file_changes.outputs.files_modified}})'
+        run: |
+          echo '${{ steps.file_changes.outputs.files_modified}}'
+          Rscript -e 'styler::style_file(${{ steps.file_changes.outputs.files_modified}})'
       - name: commit
         run: |
           git add \*.R
