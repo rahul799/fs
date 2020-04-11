@@ -23,11 +23,13 @@ jobs:
           echo '${{ steps.file_changes.outputs.files}}'
           echo '${{ steps.file_changes.outputs.files_modified}}'
           echo '${{ steps.file_changes.outputs.files_added}}'
-          echo '${{ steps.file_changes.outputs.files_removed}}' 
+          echo '${{ steps.file_changes.outputs.files_removed}}'
+      - name: files modified 
+        run: git --no-pager diff --name-only FETCH_HEAD $(git merge-base FETCH_HEAD master)
       - name: Style
         run: |
           echo '${{ steps.file_changes.outputs.files_modified}}'
-          Rscript -e 'styler::style_file(${{ steps.file_changes.outputs.files_modified}})'
+  # Rscript -e 'styler::style_pkg()'
       - name: commit
         run: |
           git add \*.R
