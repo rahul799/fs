@@ -1,18 +1,10 @@
-on: [pull_request]
-name: Commands
+name: push-develop
+on: [push]
 jobs:
-  style:
-    name: style
+  changes:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: r-lib/actions/pr-fetch@master
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-      - uses: r-lib/actions/setup-r@master
-      - name: Install dependencies
-        run: Rscript -e 'install.packages("styler")'
-      - name: File Changes Action
+      - id: file_changes
         uses: trilom/file-changes-action@v1.2.3
       - name: test
         run: |
@@ -24,21 +16,10 @@ jobs:
           echo '${{ steps.file_changes.outputs.files_modified}}'
           echo '${{ steps.file_changes.outputs.files_added}}'
           echo '${{ steps.file_changes.outputs.files_removed}}'
-      - name: files modified 
-        run: git --no-pager diff --name-only FETCH_HEAD $(git merge-base FETCH_HEAD master)
-      - name: Style
-        run: |
-          echo '${{ steps.file_changes.outputs.files_modified}}'
-  # Rscript -e 'styler::style_pkg()'
-      - name: commit
-        run: |
-          git add \*.R
-          git commit -m 'Style'
-      - uses: r-lib/actions/pr-push@master
+      - run: |
+         mkdir -p artifact
+         echo hello > artifact/world.txt
+      - uses: actions/upload-artifact@v1
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-  # A mock job just to ensure we have a successful build status
-  finish:
-    runs-on: ubuntu-latest
-    steps:
-      - run: true
+          name: my-artifact
+          path: artifact
