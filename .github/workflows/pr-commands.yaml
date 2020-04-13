@@ -22,3 +22,13 @@ jobs:
         with:
           name: files
           path: world.txt
+          
+  loopcheck:
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: download
+        uses: actions/download-artifact@v1
+        with:
+          name: files
+      - name: echo
+        run: cat files/world.txt
