@@ -21,12 +21,12 @@ jobs:
       - name: string operations
         run: |
           echo '${{ steps.file_changes.outputs.files_modified}}' > names.txt
-          cat names.txt | tr -d '[]' > new.txt
-          text=$(cat new.txt)
+          cat names.txt | tr -d '[]' > names.txt
+          text=$(cat names.txt)
           IFS=',' read -ra ids <<< "$text"
-          for i in "${ids[@]}"; do echo "$i" >> new2.txt; done
+          for i in "${ids[@]}"; do echo "$i" >> new.txt; done
       - name: Style
-        run: for i in $(cat new2.txt); do Rscript -e "styler::style_file("$i")"; done
+        run: for i in $(cat new.txt); do Rscript -e "styler::style_file("$i")"; done
       - name: commit
         run: |
           git add \*.R
