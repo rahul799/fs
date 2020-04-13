@@ -24,6 +24,7 @@ jobs:
           path: world.txt
           
   loopcheck:
+    needs: changes
     runs-on: [ubuntu-latest]
     steps:
       - name: download
@@ -31,4 +32,4 @@ jobs:
         with:
           name: files
       - name: echo
-        run: cat world.txt
+        run: cat files/world.txt
