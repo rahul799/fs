@@ -141,7 +141,7 @@ colourise_fs_path <- function(x, ..., colors = Sys.getenv("LS_COLORS", gnu_ls_de
     if (length(code) > 0 && !is.na(code)) {
       res[[i]] <- paste0("\033[", code, "m", x[[i]], "\033[0m")
     } else {
-      res[[i]] <- x[[i]]
+      res[[i]] <-          x[[i]]
     }
   }
   res
