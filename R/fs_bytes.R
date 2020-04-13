@@ -146,5 +146,5 @@ pillar_shaft.fs_bytes <- function(x, ...) {
 }
 
 type_sum.fs_bytes <- function(x) {
-  "fs::bytes"
+                       "fs::bytes"
 }
