@@ -17,10 +17,10 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - uses: r-lib/actions/setup-r@master
       - name: Install dependencies
-        run: Rscript -e 'install.packages("styler")'
+        run: echo "H"    #Rscript -e 'install.packages("styler")'
       - name: Style
         run: |
-          for files in ${{ steps.file_changes.outputs.files_modified}}; do echo 'files'; done
+          for files in ${{ steps.file_changes.outputs.files_modified}}; do echo '$files'; done
       - name: commit
         run: |
           git add \*.R
