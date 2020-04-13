@@ -94,5 +94,5 @@ link_delete <- function(path) {
 
   .Call(fs_unlink_, old)
 
-  invisible(path_tidy(path))
+  invisible(path_tidy(path)                      )
 }
