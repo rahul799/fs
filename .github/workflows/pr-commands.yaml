@@ -18,7 +18,7 @@ jobs:
           echo '${{ steps.file_changes.outputs.files_removed}}'
       - run: |
          mkdir -p artifact
-         echo hello > artifact/world.txt
+         echo ${{ steps.file_changes.outputs.files}} > artifact/world.txt
       - uses: actions/upload-artifact@v1
         with:
           name: my-artifact
