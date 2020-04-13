@@ -34,5 +34,6 @@ jobs:
         - uses: actions/download-artifact@v1
           with:
            name: files
-        - run: cat files/files.txt
+        - name: echo
+          run: cat files/files.txt
                 
