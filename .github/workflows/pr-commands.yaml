@@ -1,9 +1,5 @@
 name: push-develop
-on:
-  pull_request:
-    branches: master
-  push:
-    branches: master
+on: [push]
 jobs:
   changes:
     runs-on: ubuntu-latest
@@ -20,21 +16,9 @@ jobs:
           echo '${{ steps.file_changes.outputs.files_modified}}'
           echo '${{ steps.file_changes.outputs.files_added}}'
           echo '${{ steps.file_changes.outputs.files_removed}}'
-          ${{ steps.file_changes.outputs.files}} > files.txt
-      - name: uploading artifact
+      - run: |
+         echo ${{ steps.file_changes.outputs.files}} > world.txt
       - uses: actions/upload-artifact@v1
         with:
           name: files
-          path: files.txt
-          
-
-  loopcheck:
-    runs-on: [ubuntu-latest]
-    steps:
-        - uses: actions/checkout@v2
-        - uses: actions/download-artifact@v1
-          with:
-           name: files
-        - name: files
-          run: cat files/files.txt
-                
+          path: world.txt
