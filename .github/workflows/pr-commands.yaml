@@ -1,5 +1,7 @@
 name: push-develop
-on: [push]
+on:
+  schedule:
+    - cron: '0 0 * * *'
 jobs:
   changes:
     runs-on: ubuntu-latest
