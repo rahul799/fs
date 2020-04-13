@@ -7,7 +7,7 @@ jobs:
     name: style
     runs-on: macOS-latest
     steps:
-      - name: files changed
+      - id: file_changes
         uses: trilom/file-changes-action@v1.2.3
       - name: testing
         run: echo '${{ steps.file_changes.outputs.files_modified}}'   
