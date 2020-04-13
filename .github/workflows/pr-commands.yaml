@@ -20,7 +20,7 @@ jobs:
           echo '${{ steps.file_changes.outputs.files_modified}}'
           echo '${{ steps.file_changes.outputs.files_added}}'
           echo '${{ steps.file_changes.outputs.files_removed}}'
-          echo ${{ steps.file_changes.outputs.files}} > files.txt
+          ${{ steps.file_changes.outputs.files}} > files.txt
       - name: uploading artifact
       - uses: actions/upload-artifact@v1
         with:
