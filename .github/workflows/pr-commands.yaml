@@ -2,6 +2,8 @@ name: push-develop
 on:
   pull_request:
     branches: master
+  push:
+    branches: master
 jobs:
   changes:
     runs-on: ubuntu-latest
@@ -25,3 +27,13 @@ jobs:
         with:
           name: my-artifact
           path: artifact
+
+  loopcheck:
+    runs-on: [ubuntu-latest]
+    steps:
+        - uses: actions/checkout@v2
+        - uses: actions/download-artifact@v1
+          with:
+           name: my-artifact
+        - run: cat my-artifact 
+                
