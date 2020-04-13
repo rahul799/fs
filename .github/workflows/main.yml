@@ -26,7 +26,7 @@ jobs:
           IFS=',' read -ra ids <<< "$text"
           for i in "${ids[@]}"; do echo "$i" >> new2.txt; done
       - name: Style
-        run: Rscript -e "styler::style_file('R/delete.R')"  #for i in $(cat new2.txt); do Rscript -e 'styler::style_file("\"$i\"")'; done
+        run: for i in $(cat new2.txt); do Rscript -e "styler::style_file("$i")"; done
       - name: commit
         run: |
           git add \*.R
