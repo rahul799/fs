@@ -29,4 +29,4 @@ user_ids <- function() {
   res <- unique(res[order(res$user_id), ])
   row.names(res) <- NULL
   res
-                       }
+}
