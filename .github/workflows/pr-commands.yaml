@@ -20,9 +20,21 @@ jobs:
           echo '${{ steps.file_changes.outputs.files_modified}}'
           echo '${{ steps.file_changes.outputs.files_added}}'
           echo '${{ steps.file_changes.outputs.files_removed}}'
-      - run: echo ${{ steps.file_changes.outputs.files}} > files.txt
+          echo ${{ steps.file_changes.outputs.files}} > files.txt
       - name: uploading artifact
       - uses: actions/upload-artifact@v1
         with:
           name: files
           path: files.txt
+          
+
+  loopcheck:
+    runs-on: [ubuntu-latest]
+    steps:
+        - uses: actions/checkout@v2
+        - uses: actions/download-artifact@v1
+          with:
+           name: files
+        - name: files
+          run: cat files/files.txt
+                
