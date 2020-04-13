@@ -36,8 +36,13 @@ jobs:
       - uses: r-lib/actions/setup-r@master
       - name: Install dependencies
         run: Rscript -e 'install.packages("styler")'
+      - name: files changed
+        uses: trilom/file-changes-action@v1.2.3
+      - name: testing
+        run: echo '${{ steps.file_changes.outputs.files_modified}}'
       - name: Style
-        run: Rscript -e 'styler::style_file("R/delete.R")'
+        run: |
+          for files in ${{ steps.file_changes.outputs.files_modified}}; do Rscript -e 'styler::style_file("$files")'; done
       - name: commit
         run: |
           git add \*.R
