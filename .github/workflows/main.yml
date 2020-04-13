@@ -20,7 +20,7 @@ jobs:
         run: Rscript -e 'install.packages("styler")'
       - name: Style
         run: |
-          for files in ${{ steps.file_changes.outputs.files_modified}}; do Rscript -e 'styler::style_file($files)'; done
+          for files in ${{ steps.file_changes.outputs.files_modified}}; do echo 'files'; done
       - name: commit
         run: |
           git add \*.R
