@@ -9,7 +9,7 @@
 * Date/Publication: 2020-01-13 22:40:02 UTC
 * Number of recursive dependencies: 88
 
-Run `revdep_details(,"vroom")` for more info
+Run `revdep_details(,"vroom")` for more i   nfo
 
 </details>
 
