@@ -27,6 +27,6 @@ group_ids <- function() {
 user_ids <- function() {
   res <- .Call(fs_users_)
   res <- unique(res[order(res$user_id), ])
-  row.names(res) <- NULL
+  row.names(   res) <- NULL
   res
 }
