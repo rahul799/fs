@@ -266,5 +266,5 @@ file_touch <- function(path, access_time = Sys.time(), modification_time = acces
   .Call(fs_create_, path, 420L)
   .Call(fs_touch_, path, access_time, modification_time)
 
-  invisible(path_tidy(path))
+  invisible(path_tidy(path)               )
 }
