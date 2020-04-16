@@ -1,0 +1,1 @@
+["_pkgdown.yml","revdep/failures.md","vignettes/function-comparisons.Rmd"]
