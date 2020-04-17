@@ -7,12 +7,16 @@ jobs:
     if: startsWith(github.event.comment.body, '/style')
     name: style
     runs-on: ubuntu-latest
-    container: alpine/git:latest
+    container: pecan/depends:develop
     steps:
       - id: file_changes
         uses: trilom/file-changes-action@v1.2.3
       - name: testing
-        run: echo '${{ steps.file_changes.outputs.files_modified}}'   
+        run: echo '${{ steps.file_changes.outputs.files_modified}}'
+      - name: Installing Git
+        run: |
+          sudo apt update
+          sudo apt install git   
       - uses: actions/checkout@v2
       - uses: r-lib/actions/pr-fetch@master
         with:
