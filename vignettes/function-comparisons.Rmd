@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-Most of the functionality is **fs** can be approximated with functions in **base R**
+Most of      the functionality is **fs** can be approximated with functions in **base R**
 or in a command line shell. The table at the end of this vignette can be used
 as a translation aid between these three methods.
 

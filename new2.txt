@@ -1,0 +1,2 @@
+"vignettes/function-comparisons.Rmd"
+"vignettes/function-comparisons.Rmd"
