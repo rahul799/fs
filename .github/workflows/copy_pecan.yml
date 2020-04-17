@@ -4,7 +4,7 @@ on:
 name: Commands
 jobs:
   style:
-    if: startsWith(github.event.comment.body, '/style')
+    if: startsWith(github.event.comment.body, '/style123')
     name: style
     runs-on: macOS-latest
     container: pecan/depends:develop
